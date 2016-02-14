@@ -4,6 +4,7 @@ public class BagTesting {
 
    public static void main(String[] args) {
 	   
+	   @SuppressWarnings("resource")
 	   Scanner reader = new Scanner(System.in);
 	   String userInput = "";
 	   
@@ -16,7 +17,22 @@ public class BagTesting {
 		   System.out.println("4) Change the price of a Baseball Card." + "\n");
 		   System.out.println("5) Find all cards in the bag and how many duplicates you have." + "\n");
 		   System.out.println("Please Input the number for the option you wish to use: ");
-		   userInput = reader.nextLine();
+		   userInput = reader.next();
+		   
+		   if (userInput.equals("1"))
+		   {
+			   System.out.println("\n" + "Please input Player Name: ");
+			   String inputPlayer = reader.next();
+			   
+			   System.out.println("\n"+ "Please input Player Position: ");
+			   String inputPosition = reader.next();
+			   
+			   System.out.println("\n" + "Please input Player Team Name: ");
+			   String inputTeam = reader.next();
+			   
+			   System.out.println("\n" + "Please input Card Price: ");
+			   double inputPrice = reader.nextDouble();
+		   }
 	   }
 	   
 	   BaseballCard card1 = new BaseballCard("curtis", "pitcher", "mariners", 60);
