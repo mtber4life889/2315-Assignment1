@@ -7,6 +7,7 @@ public class BagTesting {
 	   @SuppressWarnings("resource")
 	   Scanner reader = new Scanner(System.in);
 	   String userInput = "";
+	   BagInterface<BaseballCard> cardBag = new ArrayBag<>();
 	   
 	   while(!userInput.equals("quit"))
 	   {
@@ -17,6 +18,7 @@ public class BagTesting {
 		   System.out.println("4) Change the price of a Baseball Card." + "\n");
 		   System.out.println("5) Find all cards in the bag and how many duplicates you have." + "\n");
 		   System.out.println("Please Input the number for the option you wish to use: ");
+		   
 		   userInput = reader.next();
 		   
 		   if (userInput.equals("1"))
@@ -32,14 +34,23 @@ public class BagTesting {
 			   
 			   System.out.println("\n" + "Please input Card Price: ");
 			   double inputPrice = reader.nextDouble();
+			   
+			   System.out.println("\n" + "Please input Amount of duplicates for this card: ");
+			   int inputCardDupeAmount = reader.nextInt();
+			   int count = 0;
+			   
+			   BaseballCard card1 = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
+			   while (count <= inputCardDupeAmount)
+			   {
+				   cardBag.add(card1);
+				   count++;
+			   }
 		   }
+		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
 	   }
 	   
-	   BaseballCard card1 = new BaseballCard("curtis", "pitcher", "mariners", 60);
-	   
-	   
-	   BagInterface<BaseballCard> cardBag = new ArrayBag<>();
-	   
+	   //BaseballCard card1 = new BaseballCard("curtis", "pitcher", "mariners", 60);
 	   
 
 	  /* BaseballCard n1 = new BaseballCard();
