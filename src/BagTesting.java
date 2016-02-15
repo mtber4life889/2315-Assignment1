@@ -70,11 +70,12 @@ public class BagTesting {
 			   
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   
-			   if(cardBag.contains(testCard))
+			   if(cardBag.contains(testCard) && inputCardDupeAmount != 0)
 			   {
 				   while (count < inputCardDupeAmount)
 				   {
 					   cardBag.remove(testCard);
+					   count++;
 				   }
 			   }
 			   else
