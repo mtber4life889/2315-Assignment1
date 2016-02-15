@@ -6,6 +6,7 @@ public class BagTesting {
 	   
 	   @SuppressWarnings("resource")
 	   Scanner reader = new Scanner(System.in);
+	   //reader.useDelimiter("\n");
 	   String userInput = "";
 	   BagInterface<BaseballCard> cardBag = new ArrayBag<>();
 	   
@@ -19,18 +20,19 @@ public class BagTesting {
 		   System.out.println("5) Find all cards in the bag and how many duplicates you have." + "\n");
 		   System.out.println("Please Input the number for the option you wish to use: ");
 		   
-		   userInput = reader.next();
+		   userInput = reader.nextLine();
 		   
+		   //menu option 1
 		   if (userInput.equals("1"))
 		   {
 			   System.out.println("\n" + "Please input Player Name: ");
-			   String inputPlayer = reader.next();
+			   String inputPlayer = reader.nextLine();
 			   
 			   System.out.println("\n"+ "Please input Player Position: ");
-			   String inputPosition = reader.next();
+			   String inputPosition = reader.nextLine();
 			   
 			   System.out.println("\n" + "Please input Player Team Name: ");
-			   String inputTeam = reader.next();
+			   String inputTeam = reader.nextLine();
 			   
 			   System.out.println("\n" + "Please input Card Price: ");
 			   double inputPrice = reader.nextDouble();
@@ -53,13 +55,13 @@ public class BagTesting {
 		   if(userInput.equals("2"))
 		   {
 			   System.out.println("\n" + "Please input Player Name of the card you wish to remove: ");
-			   String inputPlayer = reader.next();
+			   String inputPlayer = reader.nextLine();
 			   
 			   System.out.println("\n"+ "Please input Player Position of the card you wish to remove: ");
-			   String inputPosition = reader.next();
+			   String inputPosition = reader.nextLine();
 			   
 			   System.out.println("\n" + "Please input Player Team Name of the card you wish to remove: ");
-			   String inputTeam = reader.next();
+			   String inputTeam = reader.nextLine();
 			   
 			   System.out.println("\n" + "Please input Card Price of the card you wish to remove: ");
 			   double inputPrice = reader.nextDouble();
