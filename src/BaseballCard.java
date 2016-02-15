@@ -41,7 +41,7 @@ public class BaseballCard {
 		position = playerPosition;
 	}
 
-	public String gePlayerTeam()
+	public String getPlayerTeam()
 	{
 		return team;
 	}

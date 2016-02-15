@@ -39,15 +39,57 @@ public class BagTesting {
 			   int inputCardDupeAmount = reader.nextInt();
 			   int count = 0;
 			   
-			   BaseballCard card1 = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			  // new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   
-			   while (count <= inputCardDupeAmount)
+			   while (count < inputCardDupeAmount)
 			   {
-				   cardBag.add(card1);
+				   cardBag.add(new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice));
+				   System.out.println("card added.");
 				   count++;
 			   }
 		   }
+		   
+		   //option 2
+		   if(userInput.equals("2"))
+		   {
+			   System.out.println("\n" + "Please input Player Name of the card you wish to remove: ");
+			   String inputPlayer = reader.next();
+			   
+			   System.out.println("\n"+ "Please input Player Position of the card you wish to remove: ");
+			   String inputPosition = reader.next();
+			   
+			   System.out.println("\n" + "Please input Player Team Name of the card you wish to remove: ");
+			   String inputTeam = reader.next();
+			   
+			   System.out.println("\n" + "Please input Card Price of the card you wish to remove: ");
+			   double inputPrice = reader.nextDouble();
+			   
+			   System.out.println("\n" + "Please input Amount of duplicates for the card you wish to remove: ");
+			   int inputCardDupeAmount = reader.nextInt();
+			   int count = 0;
+			   
+			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
+			   if(cardBag.contains(testCard))
+			   {
+				   while (count < inputCardDupeAmount)
+				   {
+					   cardBag.remove(testCard);
+				   }
+			   }
+			   else
+			   {
+				   System.out.println("\n" + "Specified card either doesnt exist or you made mistake entering the values please try again.");
+			   }
+		   }
+		   
+		   //option 3
+		   if(userInput.equals("3"))
+		   {
+			   
+		   }
 		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
+		   //System.out.println("\n" + "output of frequency" + cardBag.getFrequencyOf(testCard));
 	   }
 	   
 	   //BaseballCard card1 = new BaseballCard("curtis", "pitcher", "mariners", 60);
@@ -91,6 +133,5 @@ public class BagTesting {
        System.out.println("Is bag empty? " + cardBag.isEmpty()); 
        */
               
-   }
-    
+   }    
 }
