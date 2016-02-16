@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class BagTesting {
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 	   
 	   //Scanner reader = new Scanner(System.in);
 	   //reader.useDelimiter("\n");
@@ -61,8 +61,8 @@ public class BagTesting {
 			   System.out.println("\n" + "Please input Amount of duplicates for the card you wish to remove: ");
 			   int inputCardDupeAmount = reader.nextInt();
 			   int count = 0;
-			   
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
 			   
 			   if(cardBag.contains(testCard) && inputCardDupeAmount >= 0)
 			   {
@@ -157,7 +157,18 @@ public class BagTesting {
 		   //option 5
 		   if (userInput.equals("5"))
 		   {
-			   //no idea
+			   int bagSize = cardBag.getCurrentSize();
+			   
+			   if(bagSize > 0)
+			   {
+				   while(bagSize > 0)
+				   {
+					   BagInterface<BaseballCard> copyBag = new ArrayBag<>();
+					   BaseballCard cardObj = cardBag.remove();
+					   copyBag.add(cardObj);
+				   }
+			   }	   
+			   
 		   }
 		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
 		   //System.out.println("\n" + "output of frequency" + cardBag.getFrequencyOf(testCard));
