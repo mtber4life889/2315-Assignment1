@@ -1,47 +1,35 @@
-
+/* Programmer: Curtis Chippeway
+ * The purpose of this class is to outline the methods used by a Bag data structure
+ * The BagInterface class was supplied by Kenward Chins class notes.
+ */
 public interface BagInterface<T>
 {
-   /** Gets the current number of entries in this bag.
-       @return  The integer number of entries currently in the bag. */
+	//checks the current number of entries in the bag
    public int getCurrentSize();
    
-   /** Sees whether this bag is empty.
-       @return  True if the bag is empty, or false if not. */
+   //checks if the bag is empty
    public boolean isEmpty();
-   
-   /** Adds a new entry to this bag.
-       @param newEntry  The object to be added as a new entry.
-       @return  True if the addition is successful, or false if not. */
+
+   //adds a specified newEntry to the bag
    public boolean add(T newEntry);
 
-   /** Removes one unspecified entry from this bag, if possible.
-       @return  Either the removed entry, if the removal was successful, or null. */
+   //removes a random/unspecified entry from the bag
    public T remove();
-   
-   /** Removes one occurrence of a given entry from this bag.
-       @param anEntry  The entry to be removed.
-       @return  True if the removal was successful, or false if not. */
+
+   //removes one copy/occurrence of a specified anEntry from the bag
    public boolean remove(T anEntry);
    
-   /** Removes all entries from this bag. */
+   //empties the bag
    public void clear();
-   
-   /** Counts the number of times a given entry appears in this bag.
-       @param anEntry  The entry to be counted.
-       @return  The number of times anEntry appears in the bag. */
+
+   //gets the number of duplicates a specified anEntry has in the bag
    public int getFrequencyOf(T anEntry);
-   
-   /** Tests whether this bag contains a given entry.
-       @param anEntry  The entry to locate.
-       @return  True if the bag contains anEntry, or false if not. */
+
+   //test a bag to see if it contains the specified anEntry
    public boolean contains(T anEntry);
    
-   /** Retrieves all entries that are in this bag.
-       @return  A newly allocated array of all the entries in the bag.
-                Note: If the bag is empty, the returned array is empty. */
+   //copies the contents of the bag into a new array
    public T[] toArray();
-   
-  // public boolean isArrayFull();
 
-} // end BagInterface
+}
 

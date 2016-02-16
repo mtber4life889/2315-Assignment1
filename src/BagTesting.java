@@ -1,69 +1,71 @@
+/* Programmer: Curtis Chippeway
+ * The purpose of this class is to run the Main program.
+ * The sources used were the class notes from Kenward Chin and 
+ * http://stackoverflow.com/a/22277310 to have the user menu inside of a method 
+ */
 import java.util.Scanner;
 
 public class BagTesting {
 
    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 	   
-	   //Scanner reader = new Scanner(System.in);
-	   //reader.useDelimiter("\n");
 	   String userInput = "";
+	   //declaring a bag bag object for BaseballCard objects
 	   BagInterface<BaseballCard> cardBag = new ArrayBag<>();
 	   
+	   //loop to stay in the user menu until user quits
 	   while(!userInput.equals("quit"))
 	   {
+		   //uses the menu method to create a user menu and assigns it to userInput string
 		   userInput = menu();
 		   @SuppressWarnings("resource")
 		   Scanner reader = new Scanner(System.in);
-		   //menu option 1
+		   
+		   //user menu option 1
 		   if (userInput.equals("1"))
 		   {
+			 //user card information input
 			   System.out.println("\n" + "Please input Player Name: ");
-			   String inputPlayer = reader.nextLine();
-			   
+			   String inputPlayer = reader.nextLine();			   
 			   System.out.println("\n"+ "Please input Player Position: ");
-			   String inputPosition = reader.nextLine();
-			   
+			   String inputPosition = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Player Team Name: ");
-			   String inputTeam = reader.nextLine();
-			   
+			   String inputTeam = reader.nextLine();		   
 			   System.out.println("\n" + "Please input Card Price: ");
-			   double inputPrice = reader.nextDouble();
-			   
+			   double inputPrice = reader.nextDouble();			   
 			   System.out.println("\n" + "Please input Amount of duplicates for this card: ");
 			   int inputCardDupeAmount = reader.nextInt();
 			   int count = 0;
 			   
-			  // new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
-			   
+			   //if there's more than one of the same card being entered
+			   //loop until all desired copies are in the bag
 			   while (count < inputCardDupeAmount)
 			   {
 				   addCard((new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice)), cardBag);
-				   System.out.println("card added.");
 				   count++;
 			   }
 		   }
 		   
-		   //option 2
+		   //user menu option 2
 		   if(userInput.equals("2"))
 		   {
+			 //user card information input
 			   System.out.println("\n" + "Please input Player Name of the card you wish to remove: ");
 			   String inputPlayer = reader.nextLine();
-			   
 			   System.out.println("\n"+ "Please input Player Position of the card you wish to remove: ");
-			   String inputPosition = reader.nextLine();
-			   
+			   String inputPosition = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Player Team Name of the card you wish to remove: ");
-			   String inputTeam = reader.nextLine();
-			   
+			   String inputTeam = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Card Price of the card you wish to remove: ");
-			   double inputPrice = reader.nextDouble();
-			   
+			   double inputPrice = reader.nextDouble();			   
 			   System.out.println("\n" + "Please input Amount of duplicates for the card you wish to remove: ");
 			   int inputCardDupeAmount = reader.nextInt();
 			   int count = 0;
+			   //this line assigns the card the user wants to manipulate to an object so we can access it
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   
-			   
+			   //if the bag has the card the user wants to remove loop until desired amount of copies is removed
+			   //else throw error
 			   if(cardBag.contains(testCard) && inputCardDupeAmount >= 0)
 			   {
 				   while (count < inputCardDupeAmount)
@@ -78,38 +80,29 @@ public class BagTesting {
 			   }
 		   }
 		   
-		   //option 3
+		   //user menu option 3
 		   if(userInput.equals("3"))
 		   {
+			 //user card information input
 			   System.out.println("\n" + "Please input Player Name of the card you wish to find the value of: ");
-			   String inputPlayer = reader.nextLine();
-			   
+			   String inputPlayer = reader.nextLine();			   
 			   System.out.println("\n"+ "Please input Player Position of the card you wish to find the value of: ");
-			   String inputPosition = reader.nextLine();
-			   
+			   String inputPosition = reader.nextLine();		   
 			   System.out.println("\n" + "Please input Player Team Name of the card you wish to find the value of: ");
-			   String inputTeam = reader.nextLine();
-			   
+			   String inputTeam = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Card Price of the card you wish to find the value of: ");
 			   double inputPrice = reader.nextDouble();
 			   
-			   //not supposed to be here
-			   //System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the value of: ");
-			   //int inputCardDupeAmount = reader.nextInt();
-			   //int count = 0;
-			   
+			   //this line assigns the card the user wants to manipulate to an object so we can access it
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
 			   int cardFrequency = cardBag.getFrequencyOf(testCard);
-			   //BagInterface<BaseballCard> garbageBag = cardBag;
 			   
-			   
+			   //if the bag contains the card the user wishes to find the total value of
+			   //it gets the value of the card and multiplies it by how many copies there
+			   //are in the bag else throws error
 			   if(cardBag.contains(testCard))
 			   {
-				   /*while (count < cardFrequency)
-				   {
-					   cardBag.remove(testCard);
-					   count++;
-				   }*/
 				   double preValue = testCard.getCardPrice();
 				   double finalValue = preValue * cardFrequency;
 				   System.out.println("\n" + "total value of the card and any duplicates if any is: $" + finalValue);
@@ -120,27 +113,24 @@ public class BagTesting {
 			   }
 		   }
 		   
-		   //option 4
+		   //user menu option 4
 		   if (userInput.equals("4"))
 		   {
+			   //user card information input
 			   System.out.println("\n" + "Please input Player Name of the card you wish to change the value of: ");
-			   String inputPlayer = reader.nextLine();
-			   
+			   String inputPlayer = reader.nextLine();			   
 			   System.out.println("\n"+ "Please input Player Position of the card you wish to change the value of: ");
-			   String inputPosition = reader.nextLine();
-			   
+			   String inputPosition = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Player Team Name of the card you wish to change the value of: ");
-			   String inputTeam = reader.nextLine();
-			   
+			   String inputTeam = reader.nextLine();			   
 			   System.out.println("\n" + "Please input Card Price of the card you wish to find the change of: ");
 			   double inputPrice = reader.nextDouble();
 			   
-			   //System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the change of: ");
-			  // int inputCardDupeAmount = reader.nextInt();
-			   //int count = 0;
-			   
+			   //this line assigns the card the user wants to manipulate to an object so we can access it
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   
+			   //if the bag contains the card the user wishes to change the price value of
+			   //ask user for the new price and then assign it to that card else throw error
 			   if(cardBag.contains(testCard))
 			   {
 				   System.out.println("\n" + "Please input the new Card Price: ");
@@ -154,11 +144,15 @@ public class BagTesting {
 			   }
 		   }
 		   
-		   //option 5
+		   //user menu option 5
 		   if (userInput.equals("5"))
 		   {
 			   int bagSize = cardBag.getCurrentSize();
 			   
+			   //not finished but supposed to loop out all cards from original bag into new bag
+			   //and then when removing from new bag you check if you've seen that particular card before
+			   //if not store it and add a 1 value to it and then add it back to the original bag
+			   //before the loop starts again
 			   if(bagSize > 0)
 			   {
 				   while(bagSize > 0)
@@ -170,15 +164,13 @@ public class BagTesting {
 			   }	   
 			   
 		   }
-		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
-		   //System.out.println("\n" + "output of frequency" + cardBag.getFrequencyOf(testCard));
 	   }
    }
 
 
 
 
-
+//method to add cards to the bag
 private static void addCard(BaseballCard aCard, BagInterface<BaseballCard> cardBag)
 {
 	if (cardBag.add(aCard))
@@ -192,6 +184,7 @@ private static void addCard(BaseballCard aCard, BagInterface<BaseballCard> cardB
 	
 }
 
+//method for creating a user interactive menu
 private static String menu()
 {
 	String selection;
@@ -207,7 +200,6 @@ private static String menu()
 	   System.out.println("Please Input the number for the option you wish to use: ");
 	   
 	   selection = input.nextLine();
-	   //input.close();
 	   return selection;
 }
 

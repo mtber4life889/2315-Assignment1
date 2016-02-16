@@ -1,3 +1,7 @@
+/* Programmer: Curtis Chippeway
+ * The purpose of this class is to be able to create full functioning bags from it
+ * The ArrayBag class was supplied by Kenward Chins class notes.
+ */
 import java.util.Arrays;
 
 public final class ArrayBag<T> implements BagInterface<T> {
