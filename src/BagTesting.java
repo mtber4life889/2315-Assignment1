@@ -4,7 +4,6 @@ public class BagTesting {
 
    public static void main(String[] args) {
 	   
-	   @SuppressWarnings("resource")
 	   //Scanner reader = new Scanner(System.in);
 	   //reader.useDelimiter("\n");
 	   String userInput = "";
@@ -13,6 +12,7 @@ public class BagTesting {
 	   while(!userInput.equals("quit"))
 	   {
 		   userInput = menu();
+		   @SuppressWarnings("resource")
 		   Scanner reader = new Scanner(System.in);
 		   //menu option 1
 		   if (userInput.equals("1"))
@@ -96,22 +96,22 @@ public class BagTesting {
 			   //not supposed to be here
 			   //System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the value of: ");
 			   //int inputCardDupeAmount = reader.nextInt();
-			   int count = 0;
+			   //int count = 0;
 			   
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   int cardFrequency = cardBag.getFrequencyOf(testCard);
-			   BagInterface<BaseballCard> garbageBag = cardBag;
+			   //BagInterface<BaseballCard> garbageBag = cardBag;
 			   
 			   
-			   if(garbageBag.contains(testCard))
+			   if(cardBag.contains(testCard))
 			   {
-				   while (count < cardFrequency)
+				   /*while (count < cardFrequency)
 				   {
-					   garbageBag.remove(testCard);
+					   cardBag.remove(testCard);
 					   count++;
-				   }
+				   }*/
 				   double preValue = testCard.getCardPrice();
-				   double finalValue = preValue * count;
+				   double finalValue = preValue * cardFrequency;
 				   System.out.println("\n" + "total value of the card and any duplicates if any is: $" + finalValue);
 			   }
 			   else
