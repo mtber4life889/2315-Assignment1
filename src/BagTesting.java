@@ -5,23 +5,15 @@ public class BagTesting {
    public static void main(String[] args) {
 	   
 	   @SuppressWarnings("resource")
-	   Scanner reader = new Scanner(System.in);
+	   //Scanner reader = new Scanner(System.in);
 	   //reader.useDelimiter("\n");
 	   String userInput = "";
 	   BagInterface<BaseballCard> cardBag = new ArrayBag<>();
 	   
 	   while(!userInput.equals("quit"))
 	   {
-		   System.out.println("Choose from the options listed below, or type quit to close the program. "+ "\n");
-		   System.out.println("1) Add an Baseball Card to the bag." + "\n");
-		   System.out.println("2) Remove a Baseball Card and duplicates if specified." + "\n");
-		   System.out.println("3) Find the total value of a Baseball card including duplicates." + "\n");
-		   System.out.println("4) Change the price of a Baseball Card." + "\n");
-		   System.out.println("5) Find all cards in the bag and how many duplicates you have." + "\n");
-		   System.out.println("Please Input the number for the option you wish to use: ");
-		   
-		   userInput = reader.nextLine();
-		   
+		   userInput = menu();
+		   Scanner reader = new Scanner(System.in);
 		   //menu option 1
 		   if (userInput.equals("1"))
 		   {
@@ -45,7 +37,7 @@ public class BagTesting {
 			   
 			   while (count < inputCardDupeAmount)
 			   {
-				   cardBag.add(new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice));
+				   addCard((new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice)), cardBag);
 				   System.out.println("card added.");
 				   count++;
 			   }
@@ -102,17 +94,20 @@ public class BagTesting {
 			   double inputPrice = reader.nextDouble();
 			   
 			   //not supposed to be here
-			   System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the value of: ");
-			   int inputCardDupeAmount = reader.nextInt();
+			   //System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the value of: ");
+			   //int inputCardDupeAmount = reader.nextInt();
 			   int count = 0;
 			   
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   int cardFrequency = cardBag.getFrequencyOf(testCard);
+			   BagInterface<BaseballCard> garbageBag = cardBag;
 			   
-			   if(cardBag.contains(testCard) && inputCardDupeAmount >= 0)
+			   
+			   if(garbageBag.contains(testCard))
 			   {
-				   while (count < inputCardDupeAmount)
+				   while (count < cardFrequency)
 				   {
-					   cardBag.remove(testCard);
+					   garbageBag.remove(testCard);
 					   count++;
 				   }
 				   double preValue = testCard.getCardPrice();
@@ -167,47 +162,45 @@ public class BagTesting {
 		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
 		   //System.out.println("\n" + "output of frequency" + cardBag.getFrequencyOf(testCard));
 	   }
-	   
-	   //BaseballCard card1 = new BaseballCard("curtis", "pitcher", "mariners", 60);
-	   
+   }
 
-	  /* BaseballCard n1 = new BaseballCard();
-       BaseballCard n2 = new BaseballCard();
-       
-       System.out.println("Is bag empty? " + cardBag.isEmpty());
-        
-       cardBag.add(n1);
-       cardBag.add(n1);
-       cardBag.add(n1);
-       cardBag.add(n1);
-       cardBag.add(n1);
-       
-       cardBag.add(card1);
-       
-       cardBag.add(n2);
-       cardBag.add(n2);
-        
-       System.out.println("Number of john smiths: " + cardBag.getFrequencyOf(n1));
-        
-       cardBag.remove(n1);
-        
-       System.out.println("After remove, Number of john smiths: " + cardBag.getFrequencyOf(n1));
-        
-       System.out.println("Bag's current size: " + cardBag.getCurrentSize()); 
-       
-       System.out.println("Is bag empty? " + cardBag.isEmpty());
-       
-       BaseballCard n3;
-       n3 = cardBag.remove();
-       
-       System.out.println("Removed: " + n3);
-       
-       cardBag.clear();
-       
-       System.out.println("Bag's current size: " + cardBag.getCurrentSize()); 
-       
-       System.out.println("Is bag empty? " + cardBag.isEmpty()); 
-       */
-              
-   }    
+
+
+
+
+private static void addCard(BaseballCard aCard, BagInterface<BaseballCard> cardBag)
+{
+	if (cardBag.add(aCard))
+	{
+		System.out.println("added a " + aCard.getPlayerName() + ".");		
+	}
+	else
+	{
+		System.out.println("tried to add a " + aCard.getPlayerName() + ", but couldn't");
+	}
+	
 }
+
+private static String menu()
+{
+	String selection;
+	@SuppressWarnings("resource")
+	Scanner input = new Scanner(System.in);
+	
+	System.out.println("Choose from the options listed below, or type quit to close the program. "+ "\n");
+	   System.out.println("1) Add an Baseball Card to the bag." + "\n");
+	   System.out.println("2) Remove a Baseball Card and duplicates if specified." + "\n");
+	   System.out.println("3) Find the total value of a Baseball card including duplicates." + "\n");
+	   System.out.println("4) Change the price of a Baseball Card." + "\n");
+	   System.out.println("5) Find all cards in the bag and how many duplicates you have." + "\n");
+	   System.out.println("Please Input the number for the option you wish to use: ");
+	   
+	   selection = input.nextLine();
+	   //input.close();
+	   return selection;
+}
+
+
+
+}
+

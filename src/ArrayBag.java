@@ -91,7 +91,7 @@ public final class ArrayBag<T> implements BagInterface<T> {
 		return result;
 	}
 
-	public boolean isArrayFull()
+	private boolean isArrayFull()
 	{
 		return numberOfEntries >= bag.length;
 	}
