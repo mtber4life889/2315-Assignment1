@@ -4,7 +4,7 @@ public final class ArrayBag<T> implements BagInterface<T> {
 	
 	private final T[] bag;
 	private int numberOfEntries;
-	private static final int DEFAULT_CAPACITY = 23;
+	private static final int DEFAULT_CAPACITY = 42;
 	
 	public ArrayBag()
 	{

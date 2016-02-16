@@ -72,7 +72,7 @@ public class BagTesting {
 			   
 			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
 			   
-			   if(cardBag.contains(testCard) && inputCardDupeAmount != 0)
+			   if(cardBag.contains(testCard) && inputCardDupeAmount >= 0)
 			   {
 				   while (count < inputCardDupeAmount)
 				   {
@@ -89,7 +89,80 @@ public class BagTesting {
 		   //option 3
 		   if(userInput.equals("3"))
 		   {
+			   System.out.println("\n" + "Please input Player Name of the card you wish to find the value of: ");
+			   String inputPlayer = reader.nextLine();
 			   
+			   System.out.println("\n"+ "Please input Player Position of the card you wish to find the value of: ");
+			   String inputPosition = reader.nextLine();
+			   
+			   System.out.println("\n" + "Please input Player Team Name of the card you wish to find the value of: ");
+			   String inputTeam = reader.nextLine();
+			   
+			   System.out.println("\n" + "Please input Card Price of the card you wish to find the value of: ");
+			   double inputPrice = reader.nextDouble();
+			   
+			   //not supposed to be here
+			   System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the value of: ");
+			   int inputCardDupeAmount = reader.nextInt();
+			   int count = 0;
+			   
+			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
+			   if(cardBag.contains(testCard) && inputCardDupeAmount >= 0)
+			   {
+				   while (count < inputCardDupeAmount)
+				   {
+					   cardBag.remove(testCard);
+					   count++;
+				   }
+				   double preValue = testCard.getCardPrice();
+				   double finalValue = preValue * count;
+				   System.out.println("\n" + "total value of the card and any duplicates if any is: $" + finalValue);
+			   }
+			   else
+			   {
+				   System.out.println("\n" + "Specified card either doesnt exist or you made mistake entering the values please try again.");
+			   }
+		   }
+		   
+		   //option 4
+		   if (userInput.equals("4"))
+		   {
+			   System.out.println("\n" + "Please input Player Name of the card you wish to change the value of: ");
+			   String inputPlayer = reader.nextLine();
+			   
+			   System.out.println("\n"+ "Please input Player Position of the card you wish to change the value of: ");
+			   String inputPosition = reader.nextLine();
+			   
+			   System.out.println("\n" + "Please input Player Team Name of the card you wish to change the value of: ");
+			   String inputTeam = reader.nextLine();
+			   
+			   System.out.println("\n" + "Please input Card Price of the card you wish to find the change of: ");
+			   double inputPrice = reader.nextDouble();
+			   
+			   //System.out.println("\n" + "Please input Amount of duplicates for the card you wish to find the change of: ");
+			  // int inputCardDupeAmount = reader.nextInt();
+			   //int count = 0;
+			   
+			   BaseballCard testCard = new BaseballCard(inputPlayer, inputPosition, inputTeam, inputPrice);
+			   
+			   if(cardBag.contains(testCard))
+			   {
+				   System.out.println("\n" + "Please input the new Card Price: ");
+				   double inputNewPrice = reader.nextDouble();
+				   testCard.setCardPrice(inputNewPrice);
+				   System.out.println("\n" + "Succesfully changed price the price is now: $" + testCard.getCardPrice());
+			   }
+			   else
+			   {
+				   System.out.println("\n" + "Specified card either doesnt exist or you made mistake entering the values please try again.");
+			   }
+		   }
+		   
+		   //option 5
+		   if (userInput.equals("5"))
+		   {
+			   //no idea
 		   }
 		   System.out.println("\n" + "output of entries in bag" + cardBag.getCurrentSize());
 		   //System.out.println("\n" + "output of frequency" + cardBag.getFrequencyOf(testCard));
